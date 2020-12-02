@@ -2,8 +2,8 @@ defmodule Event2 do
   def run do
     IO.puts("Test part1: #{part1("input/event2/test.txt")}")
     IO.puts("Puzzle part1: #{part1("input/event2/puzzle.txt")}")
-    IO.puts("Test part1: #{part2("input/event2/test.txt")}")
-    IO.puts("Puzzle part1: #{part2("input/event2/puzzle.txt")}")
+    IO.puts("Test part2: #{part2("input/event2/test.txt")}")
+    IO.puts("Puzzle part2: #{part2("input/event2/puzzle.txt")}")
   end
 
   def part1(path), do: input_stream(path) |> Stream.filter(&filter_fun/1) |> Enum.count()
@@ -12,10 +12,7 @@ defmodule Event2 do
   def input_stream(path), do: path |> File.stream!() |> Stream.map(&parse_input/1)
 
   def parse_input(input) do
-    [positions_s, letter_s, pass_s] = String.split(input, " ")
-    [low, high] = String.split(positions_s, "-")
-    [letter, _] = String.split(letter_s, ":")
-    [pass, _] = String.split(pass_s, "\n")
+    [low, high, letter, pass] = String.trim(input) |> String.split(~r/[-: ]/, trim: true)
     {String.to_integer(low), String.to_integer(high), letter, pass}
   end
 
@@ -24,9 +21,6 @@ defmodule Event2 do
     low <= pass_letter_count and pass_letter_count <= high
   end
 
-  def filter_fun2({low, high, letter, pass}) do
-    low_contains = binary_part(pass, low - 1, 1) == letter
-    high_contains = binary_part(pass, high - 1, 1) == letter
-    :erlang.xor(low_contains, high_contains)
-  end
+  def filter_fun2({low, high, letter, pass}),
+    do: :erlang.xor(String.at(pass, low - 1) == letter, String.at(pass, high - 1) == letter)
 end
