@@ -27,12 +27,12 @@ defmodule Event3 do
 
   def step(input, {count, index, step, step_down, step_down}) do
     width = length(input)
-    count = count + ((Enum.at(input, index - 1) && 1) || 0)
+    count = count + ((Enum.at(input, index) && 1) || 0)
     {[count], {count, rem(index + step, width), step, step_down, 1}}
   end
 
   def step(_input, {count, index, step, step_down, down_counter}),
     do: {[count], {count, index, step, step_down, down_counter + 1}}
 
-  def rule_to_acc({right, down}), do: {0, right + 1, right, down, 1}
+  def rule_to_acc({right, down}), do: {0, right, right, down, 1}
 end
