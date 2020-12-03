@@ -27,15 +27,8 @@ defmodule Event3 do
 
   def step(input, {count, index, step, step_down, step_down}) do
     width = length(input)
-
-    next_index =
-      case index + step do
-        new when new > width - 1 -> new - width
-        new -> new
-      end
-
     count = count + ((Enum.at(input, index - 1) && 1) || 0)
-    {[count], {count, next_index, step, step_down, 1}}
+    {[count], {count, rem(index + step, width), step, step_down, 1}}
   end
 
   def step(_input, {count, index, step, step_down, down_counter}),
