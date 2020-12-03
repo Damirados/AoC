@@ -13,7 +13,7 @@ defmodule Event3 do
 
     input_stream(path)
     |> Stream.drop(1)
-    |> Stream.transform(accs, &transform_fun2/2)
+    |> Stream.transform(accs, &step_all/2)
     |> Stream.take(-length(ruleset))
     |> Stream.flat_map(& &1)
     |> Enum.reduce(&(&1 * &2))
@@ -23,7 +23,9 @@ defmodule Event3 do
 
   def parse_input(input), do: String.trim(input) |> String.graphemes() |> Enum.map(&(&1 == "#"))
 
-  def transform_fun(input, {count, index, step, step_down, step_down}) do
+  def step_all(input, acc), do: Enum.map(acc, &step(input, &1)) |> Enum.unzip()
+
+  def step(input, {count, index, step, step_down, step_down}) do
     width = length(input)
 
     next_index =
@@ -36,13 +38,8 @@ defmodule Event3 do
     {[count], {count, next_index, step, step_down, 1}}
   end
 
-  def transform_fun(_input, {count, index, step, step_down, down_counter}),
+  def step(_input, {count, index, step, step_down, down_counter}),
     do: {[count], {count, index, step, step_down, down_counter + 1}}
-
-  def transform_fun2(input, acc) do
-    Enum.map(acc, &transform_fun(input, &1))
-    |> Enum.unzip()
-  end
 
   def rule_to_acc({right, down}), do: {0, right + 1, right, down, 1}
 end
