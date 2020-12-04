@@ -15,7 +15,7 @@ defmodule Event4 do
     input_stream(path)
     |> Stream.concat([nil])
     |> Stream.transform(%{}, &collect_passport/2)
-    |> Stream.filter(&validate_password_required/1)
+    |> Stream.filter(&validate_passport_keys/1)
     |> Enum.count()
   end
 
@@ -35,9 +35,9 @@ defmodule Event4 do
     {[nil], new_acc}
   end
 
-  def validate_password_required(nil), do: false
+  def validate_passport_keys(nil), do: false
 
-  def validate_password_required(passport),
+  def validate_passport_keys(passport),
     do: Enum.all?(@required_fields, &(&1 in Map.keys(passport)))
 
   def validate_passport(nil), do: false
