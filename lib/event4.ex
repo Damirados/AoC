@@ -80,12 +80,11 @@ defmodule Event4 do
   def parse_input(input) do
     String.trim(input)
     |> String.split(" ", trim: true)
+    |> Enum.map(&(String.split(&1, ":", trim: true) |> List.to_tuple()))
+    |> Enum.into(%{})
     |> case do
-      [] ->
-        nil
-
-      pairs ->
-        Enum.map(pairs, &(String.split(&1, ":", trim: true) |> List.to_tuple())) |> Enum.into(%{})
+      map when map_size(map) == 0 -> nil
+      map -> map
     end
   end
 end
