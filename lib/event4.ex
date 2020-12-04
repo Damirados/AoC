@@ -13,15 +13,17 @@ defmodule Event4 do
 
   def part1(path) do
     input_stream(path)
+    |> Stream.concat([nil])
     |> Stream.transform(%{}, &collect_passport/2)
-    |> Stream.filter(&filter_fun/1)
+    |> Stream.filter(&validate_password_required/1)
     |> Enum.count()
   end
 
   def part2(path) do
     input_stream(path)
+    |> Stream.concat([nil])
     |> Stream.transform(%{}, &collect_passport/2)
-    |> Stream.filter(&filter_fun2/1)
+    |> Stream.filter(&validate_passport/1)
     |> Enum.count()
   end
 
@@ -33,13 +35,14 @@ defmodule Event4 do
     {[nil], new_acc}
   end
 
-  def filter_fun(nil), do: false
+  def validate_password_required(nil), do: false
 
-  def filter_fun(passport), do: Enum.all?(@required_fields, &(&1 in Map.keys(passport)))
+  def validate_password_required(passport),
+    do: Enum.all?(@required_fields, &(&1 in Map.keys(passport)))
 
-  def filter_fun2(nil), do: false
+  def validate_passport(nil), do: false
 
-  def filter_fun2(passport) do
+  def validate_passport(passport) do
     types = %{
       byr: :integer,
       iyr: :integer,
