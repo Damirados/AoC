@@ -7,22 +7,9 @@ defmodule Event6 do
   end
 
   def solver(path, counter),
-    do: input_stream(path) |> collect_answers() |> Stream.map(counter) |> Enum.sum()
+    do: input_stream(path) |> Stream.chunk_by(&(&1 == "")) |> Stream.map(counter) |> Enum.sum()
 
   def input_stream(path), do: path |> File.stream!() |> Stream.map(&String.trim/1)
-
-  def collect_answers(stream) do
-    Stream.chunk_while(
-      stream,
-      [],
-      fn
-        "", acc -> {:cont, Enum.reverse(acc), []}
-        answers, [] -> {:cont, [answers]}
-        answers, group -> {:cont, [answers | group]}
-      end,
-      &{:cont, Enum.reverse(&1), []}
-    )
-  end
 
   def count_answers(group),
     do: group |> Enum.reduce(&<>/2) |> String.graphemes() |> Enum.uniq() |> Enum.count()
