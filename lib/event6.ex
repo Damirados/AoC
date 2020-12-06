@@ -47,9 +47,7 @@ defmodule Event6 do
     group
     |> Enum.flat_map(&(&1 |> String.graphemes() |> Enum.uniq()))
     |> Enum.group_by(& &1)
-    |> Enum.flat_map(fn {key, value} ->
-      if length(value) == people, do: [key], else: []
-    end)
+    |> Enum.flat_map(fn {key, value} -> (length(value) == people && [key]) || [] end)
     |> Enum.count()
   end
 
