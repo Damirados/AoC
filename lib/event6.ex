@@ -1,24 +1,15 @@
 defmodule Event6 do
   def run do
-    IO.puts("Test part1: #{part1("input/event6/test.txt")}")
-    IO.puts("Puzzle part1: #{part1("input/event6/puzzle.txt")}")
-    IO.puts("Test part2: #{part2("input/event6/test.txt")}")
-    IO.puts("Puzzle part2: #{part2("input/event6/puzzle.txt")}")
+    IO.puts("Test part1: #{solver("input/event6/test.txt", &count_answers/1)}")
+    IO.puts("Puzzle part1: #{solver("input/event6/puzzle.txt", &count_answers/1)}")
+    IO.puts("Test part2: #{solver("input/event6/test.txt", &count_answers2/1)}")
+    IO.puts("Puzzle part2: #{solver("input/event6/puzzle.txt", &count_answers2/1)}")
   end
 
-  def part1(path) do
-    input_stream(path)
-    |> collect_answers()
-    |> Stream.map(&count_answers/1)
-    |> Enum.sum()
-  end
+  def solver(path, counter),
+    do: input_stream(path) |> collect_answers() |> Stream.map(counter) |> Enum.sum()
 
-  def part2(path) do
-    input_stream(path)
-    |> collect_answers()
-    |> Stream.map(&count_answers2/1)
-    |> Enum.sum()
-  end
+  def input_stream(path), do: path |> File.stream!() |> Stream.map(&String.trim/1)
 
   def collect_answers(stream) do
     Stream.chunk_while(
@@ -33,13 +24,8 @@ defmodule Event6 do
     )
   end
 
-  def count_answers(group) do
-    group
-    |> Enum.reduce(&<>/2)
-    |> String.graphemes()
-    |> Enum.uniq()
-    |> Enum.count()
-  end
+  def count_answers(group),
+    do: group |> Enum.reduce(&<>/2) |> String.graphemes() |> Enum.uniq() |> Enum.count()
 
   def count_answers2(group) do
     people = length(group)
@@ -50,6 +36,4 @@ defmodule Event6 do
     |> Enum.flat_map(fn {key, value} -> (length(value) == people && [key]) || [] end)
     |> Enum.count()
   end
-
-  def input_stream(path), do: path |> File.stream!() |> Stream.map(&String.trim/1)
 end
