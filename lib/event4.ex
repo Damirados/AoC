@@ -4,35 +4,19 @@ defmodule Event4 do
   @required_fields_a ~w(ecl pid eyr hcl byr iyr hgt)a
 
   def run do
-    IO.puts("Test part1: #{part1("input/event4/test.txt")}")
-    IO.puts("Puzzle part1: #{part1("input/event4/puzzle.txt")}")
-    IO.puts("Test part2: #{part2("input/event4/test.txt")}")
-    IO.puts("Test part2 valid: #{part2("input/event4/valid.txt")}")
-    IO.puts("Puzzle part2: #{part2("input/event4/puzzle.txt")}")
+    IO.puts("Test part1: #{solver("input/event4/test.txt", &validate_passport_keys/1)}")
+    IO.puts("Puzzle part1: #{solver("input/event4/puzzle.txt", &validate_passport_keys/1)}")
+    IO.puts("Test part2: #{solver("input/event4/test.txt", &validate_passport/1)}")
+    IO.puts("Test part2 valid: #{solver("input/event4/valid.txt", &validate_passport/1)}")
+    IO.puts("Puzzle part2: #{solver("input/event4/puzzle.txt", &validate_passport/1)}")
   end
 
-  def part1(path) do
+  def solver(path, validator) do
     input_stream(path)
-    |> Stream.concat([nil])
-    |> Stream.transform(%{}, &collect_passport/2)
-    |> Stream.filter(&validate_passport_keys/1)
+    |> Stream.chunk_by(&(&1 == nil))
+    |> Stream.map(fn chunk -> Enum.reduce(chunk, &Map.merge/2) end)
+    |> Stream.filter(validator)
     |> Enum.count()
-  end
-
-  def part2(path) do
-    input_stream(path)
-    |> Stream.concat([nil])
-    |> Stream.transform(%{}, &collect_passport/2)
-    |> Stream.filter(&validate_passport/1)
-    |> Enum.count()
-  end
-
-  def collect_passport(nil, acc) when map_size(acc) == 0, do: {[nil], %{}}
-  def collect_passport(nil, acc), do: {[acc], %{}}
-
-  def collect_passport(passport_part, acc) do
-    new_acc = Map.merge(acc, passport_part)
-    {[nil], new_acc}
   end
 
   def validate_passport_keys(nil), do: false
