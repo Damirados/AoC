@@ -19,9 +19,7 @@ defmodule Event8 do
     |> run_code2()
   end
 
-  def input_stream(path),
-    # |> Stream.with_index()
-    do: path |> File.stream!() |> Stream.map(&parse_input/1)
+  def input_stream(path), do: path |> File.stream!() |> Stream.map(&parse_input/1)
 
   def parse_input(input) do
     {operation, val} =
