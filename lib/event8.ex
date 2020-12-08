@@ -48,19 +48,17 @@ defmodule Event8 do
     cond do
       index in seen_indexes ->
         repeated_op_index = Enum.find_index(seen_indexes, &(&1 == index))
-        history_before_repeat = Enum.take(history, -repeated_op_index)
-
-        possible_broken_op_indexes =
-          Enum.flat_map(history_before_repeat, fn {_, i, _} ->
-            (elem(Enum.at(code, i), 0) in [:nop, :jmp] && [i]) || []
-          end)
-
-        possible_new_codes =
-          Enum.map(possible_broken_op_indexes, fn broken_op_index ->
-            List.update_at(code, broken_op_index, fn {key, val} -> {fix_operation(key), val} end)
-          end)
-
-        Enum.find_value(possible_new_codes, fn code ->
+        # History before repeat happened 
+        Stream.take(history, -repeated_op_index)
+        # Possible broken operation codepoints
+        |> Stream.flat_map(fn {_, i, _} ->
+          (elem(Enum.at(code, i), 0) in [:nop, :jmp] && [i]) || []
+        end)
+        # Possible new codes
+        |> Stream.map(fn broken_op_index ->
+          List.update_at(code, broken_op_index, fn {key, val} -> {fix_operation(key), val} end)
+        end)
+        |> Enum.find_value(fn code ->
           {exit_code, acc} = run_code(code)
           if exit_code == :length, do: acc
         end)
