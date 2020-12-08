@@ -63,7 +63,7 @@ defmodule Event8 do
 
         possible_new_codes =
           Enum.map(possible_broken_op_indexes, fn broken_op_index ->
-            List.update_at(code, broken_op_index, fn {key, val} -> {fix_operration(key), val} end)
+            List.update_at(code, broken_op_index, fn {key, val} -> {fix_operation(key), val} end)
           end)
 
         Enum.find_value(possible_new_codes, fn code ->
@@ -81,6 +81,6 @@ defmodule Event8 do
   def run_operation(acc, index, {:acc, val}), do: {acc + val, index + 1}
   def run_operation(acc, index, {:jmp, val}), do: {acc, index + val}
 
-  def fix_operration(:nop), do: :jmp
-  def fix_operration(:jmp), do: :nop
+  def fix_operation(:nop), do: :jmp
+  def fix_operation(:jmp), do: :nop
 end
