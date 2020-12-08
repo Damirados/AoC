@@ -36,7 +36,7 @@ defmodule Event8 do
         {:seen, acc}
 
       index == length(code) ->
-        {:length, acc}
+        {:end, acc}
 
       true ->
         {acc, new_index} = run_operation(acc, index, Enum.at(code, index))
@@ -44,14 +44,14 @@ defmodule Event8 do
     end
   end
 
-  def run_code2(code, state = {acc, index, seen_indexes} \\ {0, 0, []}, history \\ []) do
+  def run_code2(code, {acc, index, seen_indexes} \\ {0, 0, []}) do
     cond do
       index in seen_indexes ->
         repeated_op_index = Enum.find_index(seen_indexes, &(&1 == index))
         # History before repeat happened 
-        Stream.take(history, -repeated_op_index)
+        Stream.take(seen_indexes, repeated_op_index)
         # Possible broken operation codepoints
-        |> Stream.flat_map(fn {_, i, _} ->
+        |> Stream.flat_map(fn i ->
           (elem(Enum.at(code, i), 0) in [:nop, :jmp] && [i]) || []
         end)
         # Possible new codes
@@ -60,12 +60,12 @@ defmodule Event8 do
         end)
         |> Enum.find_value(fn code ->
           {exit_code, acc} = run_code(code)
-          if exit_code == :length, do: acc
+          if exit_code == :end, do: acc
         end)
 
       true ->
         {acc, new_index} = run_operation(acc, index, Enum.at(code, index))
-        run_code2(code, {acc, new_index, [index | seen_indexes]}, [state | history])
+        run_code2(code, {acc, new_index, [index | seen_indexes]})
     end
   end
 
