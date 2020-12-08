@@ -44,11 +44,7 @@ defmodule Event8 do
     end
   end
 
-  def run_code2(
-        code,
-        state = {acc, index, seen_indexes} \\ {0, 0, []},
-        history \\ []
-      ) do
+  def run_code2(code, state = {acc, index, seen_indexes} \\ {0, 0, []}, history \\ []) do
     cond do
       index in seen_indexes ->
         repeated_op_index = Enum.find_index(seen_indexes, &(&1 == index))
