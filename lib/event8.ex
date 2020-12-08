@@ -48,7 +48,7 @@ defmodule Event8 do
     cond do
       index in seen_indexes ->
         repeated_op_index = Enum.find_index(seen_indexes, &(&1 == index))
-        # History before repeat happened 
+        # History since repeat happened
         Stream.take(seen_indexes, repeated_op_index)
         # Possible broken operation codepoints
         |> Stream.flat_map(fn i ->
