@@ -12,3 +12,4 @@ Solutions for [Advent of Code](https://adventofcode.com) puzzles in [Elixir](htt
 * [Day 6](https://github.com/Damirados/AoC/blob/master/lib/event6.ex)
 * [Day 7](https://github.com/Damirados/AoC/blob/master/lib/event7.ex)
 * [Day 8](https://github.com/Damirados/AoC/blob/master/lib/event8.ex)
+* [Day 9](https://github.com/Damirados/AoC/blob/master/lib/event9.ex)
