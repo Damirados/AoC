@@ -6,6 +6,9 @@ defmodule Event10 do
     IO.puts("Test part2: #{part2("input/event10/test.txt")}")
     IO.puts("Test2 part2: #{part2("input/event10/test2.txt")}")
     IO.puts("Puzzle part2: #{part2("input/event10/puzzle.txt")}")
+    IO.puts("Test part2_optimal: #{part2_optimal("input/event10/test.txt")}")
+    IO.puts("Test2 part2_optimal: #{part2_optimal("input/event10/test2.txt")}")
+    IO.puts("Puzzle part2_optimal: #{part2_optimal("input/event10/puzzle.txt")}")
   end
 
   def part1(path) do
@@ -27,6 +30,23 @@ defmodule Event10 do
       _ -> []
     end)
     |> Enum.reduce(&(&1 * &2))
+  end
+
+  def part2_optimal(path) do
+    input_stream(path)
+    |> Enum.sort()
+    |> Enum.reduce({[0], [1]}, fn
+      element, {interval, accumulators} ->
+        relevant_interval = Enum.filter(interval, &(&1 + 3 >= element))
+        relevant_accs = Enum.take(accumulators, -length(relevant_interval))
+
+        new_acc =
+          (length(relevant_accs) > 1 && Enum.sum(relevant_accs)) || List.last(relevant_accs)
+
+        {relevant_interval ++ [element], relevant_accs ++ [new_acc]}
+    end)
+    |> elem(1)
+    |> List.last()
   end
 
   def input_stream(path),
