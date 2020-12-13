@@ -1,9 +1,9 @@
-defmodule Event8 do
+defmodule Y2020.Event8 do
   def run do
-    IO.puts("Test part1: #{part1("input/event8/test.txt")}")
-    IO.puts("Puzzle part1: #{part1("input/event8/puzzle.txt")}")
-    IO.puts("Test part2: #{part2("input/event8/test.txt")}")
-    IO.puts("Puzzle part2: #{part2("input/event8/puzzle.txt")}")
+    IO.puts("Test part1: #{part1("input/Y2020/event8/test.txt")}")
+    IO.puts("Puzzle part1: #{part1("input/Y2020/event8/puzzle.txt")}")
+    IO.puts("Test part2: #{part2("input/Y2020/event8/test.txt")}")
+    IO.puts("Puzzle part2: #{part2("input/Y2020/event8/puzzle.txt")}")
   end
 
   def part1(path) do

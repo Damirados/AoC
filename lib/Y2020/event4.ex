@@ -1,14 +1,14 @@
-defmodule Event4 do
+defmodule Y2020.Event4 do
   import Ecto.Changeset
   @required_fields ~w(ecl pid eyr hcl byr iyr hgt)
   @required_fields_a ~w(ecl pid eyr hcl byr iyr hgt)a
 
   def run do
-    IO.puts("Test part1: #{solver("input/event4/test.txt", &validate_passport_keys/1)}")
-    IO.puts("Puzzle part1: #{solver("input/event4/puzzle.txt", &validate_passport_keys/1)}")
-    IO.puts("Test part2: #{solver("input/event4/test.txt", &validate_passport/1)}")
-    IO.puts("Test part2 valid: #{solver("input/event4/valid.txt", &validate_passport/1)}")
-    IO.puts("Puzzle part2: #{solver("input/event4/puzzle.txt", &validate_passport/1)}")
+    IO.puts("Test part1: #{solver("input/Y2020/event4/test.txt", &validate_passport_keys/1)}")
+    IO.puts("Puzzle part1: #{solver("input/Y2020/event4/puzzle.txt", &validate_passport_keys/1)}")
+    IO.puts("Test part2: #{solver("input/Y2020/event4/test.txt", &validate_passport/1)}")
+    IO.puts("Test part2 valid: #{solver("input/Y2020/event4/valid.txt", &validate_passport/1)}")
+    IO.puts("Puzzle part2: #{solver("input/Y2020/event4/puzzle.txt", &validate_passport/1)}")
   end
 
   def solver(path, validator) do

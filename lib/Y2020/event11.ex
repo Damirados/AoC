@@ -1,9 +1,9 @@
-defmodule Event11 do
+defmodule Y2020.Event11 do
   def run do
-    IO.puts("Test part1: #{part1("input/event11/test.txt")}")
-    IO.puts("Puzzle part1: #{part1("input/event11/puzzle.txt")}")
-    IO.puts("Test part2: #{part2("input/event11/test.txt")}")
-    IO.puts("Puzzle part2: #{part2("input/event11/puzzle.txt")}")
+    IO.puts("Test part1: #{part1("input/Y2020/event11/test.txt")}")
+    IO.puts("Puzzle part1: #{part1("input/Y2020/event11/puzzle.txt")}")
+    IO.puts("Test part2: #{part2("input/Y2020/event11/test.txt")}")
+    IO.puts("Puzzle part2: #{part2("input/Y2020/event11/puzzle.txt")}")
   end
 
   def part1(path), do: fill_till_constant(get_input(path), &fill_seat/2)

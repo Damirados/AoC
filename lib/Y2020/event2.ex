@@ -1,9 +1,9 @@
-defmodule Event2 do
+defmodule Y2020.Event2 do
   def run do
-    IO.puts("Test part1: #{part1("input/event2/test.txt")}")
-    IO.puts("Puzzle part1: #{part1("input/event2/puzzle.txt")}")
-    IO.puts("Test part2: #{part2("input/event2/test.txt")}")
-    IO.puts("Puzzle part2: #{part2("input/event2/puzzle.txt")}")
+    IO.puts("Test part1: #{part1("input/Y2020/event2/test.txt")}")
+    IO.puts("Puzzle part1: #{part1("input/Y2020/event2/puzzle.txt")}")
+    IO.puts("Test part2: #{part2("input/Y2020/event2/test.txt")}")
+    IO.puts("Puzzle part2: #{part2("input/Y2020/event2/puzzle.txt")}")
   end
 
   def part1(path), do: input_stream(path) |> Stream.filter(&filter_fun/1) |> Enum.count()

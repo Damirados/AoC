@@ -1,14 +1,14 @@
-defmodule Event10 do
+defmodule Y2020.Event10 do
   def run do
-    IO.puts("Test part1: #{part1("input/event10/test.txt")}")
-    IO.puts("Test2 part1: #{part1("input/event10/test2.txt")}")
-    IO.puts("Puzzle part1: #{part1("input/event10/puzzle.txt")}")
-    IO.puts("Test part2: #{part2("input/event10/test.txt")}")
-    IO.puts("Test2 part2: #{part2("input/event10/test2.txt")}")
-    IO.puts("Puzzle part2: #{part2("input/event10/puzzle.txt")}")
-    IO.puts("Test part2_optimal: #{part2_optimal("input/event10/test.txt")}")
-    IO.puts("Test2 part2_optimal: #{part2_optimal("input/event10/test2.txt")}")
-    IO.puts("Puzzle part2_optimal: #{part2_optimal("input/event10/puzzle.txt")}")
+    IO.puts("Test part1: #{part1("input/Y2020/event10/test.txt")}")
+    IO.puts("Test2 part1: #{part1("input/Y2020/event10/test2.txt")}")
+    IO.puts("Puzzle part1: #{part1("input/Y2020/event10/puzzle.txt")}")
+    IO.puts("Test part2: #{part2("input/Y2020/event10/test.txt")}")
+    IO.puts("Test2 part2: #{part2("input/Y2020/event10/test2.txt")}")
+    IO.puts("Puzzle part2: #{part2("input/Y2020/event10/puzzle.txt")}")
+    IO.puts("Test part2_optimal: #{part2_optimal("input/Y2020/event10/test.txt")}")
+    IO.puts("Test2 part2_optimal: #{part2_optimal("input/Y2020/event10/test2.txt")}")
+    IO.puts("Puzzle part2_optimal: #{part2_optimal("input/Y2020/event10/puzzle.txt")}")
   end
 
   def part1(path) do

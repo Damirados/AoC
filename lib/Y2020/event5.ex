@@ -1,8 +1,8 @@
-defmodule Event5 do
+defmodule Y2020.Event5 do
   def run do
-    IO.puts("Test part1: #{part1("input/event5/test.txt")}")
-    IO.puts("Puzzle part1: #{part1("input/event5/puzzle.txt")}")
-    IO.puts("Puzzle part2: #{part2("input/event5/puzzle.txt")}")
+    IO.puts("Test part1: #{part1("input/Y2020/event5/test.txt")}")
+    IO.puts("Puzzle part1: #{part1("input/Y2020/event5/puzzle.txt")}")
+    IO.puts("Puzzle part2: #{part2("input/Y2020/event5/puzzle.txt")}")
   end
 
   def part1(path), do: input_stream(path) |> Stream.map(&seat_id/1) |> Enum.max()

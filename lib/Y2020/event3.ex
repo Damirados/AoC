@@ -1,11 +1,11 @@
-defmodule Event3 do
+defmodule Y2020.Event3 do
   def run do
     part1_ruleset = [{3, 1}]
     part2_ruleset = [{1, 1}, {3, 1}, {5, 1}, {7, 1}, {1, 2}]
-    IO.puts("Test part1: #{solver("input/event3/test.txt", part1_ruleset)}")
-    IO.puts("Puzzle part1: #{solver("input/event3/puzzle.txt", part1_ruleset)}")
-    IO.puts("Test part2: #{solver("input/event3/test.txt", part2_ruleset)}")
-    IO.puts("Puzzle part2: #{solver("input/event3/puzzle.txt", part2_ruleset)}")
+    IO.puts("Test part1: #{solver("input/Y2020/event3/test.txt", part1_ruleset)}")
+    IO.puts("Puzzle part1: #{solver("input/Y2020/event3/puzzle.txt", part1_ruleset)}")
+    IO.puts("Test part2: #{solver("input/Y2020/event3/test.txt", part2_ruleset)}")
+    IO.puts("Puzzle part2: #{solver("input/Y2020/event3/puzzle.txt", part2_ruleset)}")
   end
 
   def solver(path, ruleset) do

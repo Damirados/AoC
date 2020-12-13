@@ -1,9 +1,9 @@
-defmodule Event6 do
+defmodule Y2020.Event6 do
   def run do
-    IO.puts("Test part1: #{solver("input/event6/test.txt", &count_answers/1)}")
-    IO.puts("Puzzle part1: #{solver("input/event6/puzzle.txt", &count_answers/1)}")
-    IO.puts("Test part2: #{solver("input/event6/test.txt", &count_answers2/1)}")
-    IO.puts("Puzzle part2: #{solver("input/event6/puzzle.txt", &count_answers2/1)}")
+    IO.puts("Test part1: #{solver("input/Y2020/event6/test.txt", &count_answers/1)}")
+    IO.puts("Puzzle part1: #{solver("input/Y2020/event6/puzzle.txt", &count_answers/1)}")
+    IO.puts("Test part2: #{solver("input/Y2020/event6/test.txt", &count_answers2/1)}")
+    IO.puts("Puzzle part2: #{solver("input/Y2020/event6/puzzle.txt", &count_answers2/1)}")
   end
 
   def solver(path, counter),
