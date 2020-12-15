@@ -17,3 +17,5 @@ Solutions for [Advent of Code](https://adventofcode.com) puzzles in [Elixir](htt
 * [Day 11](https://github.com/Damirados/AoC/blob/master/lib/Y2020/event11.ex)
 * [Day 12](https://github.com/Damirados/AoC/blob/master/lib/Y2020/event12.ex)
 * [Day 13](https://github.com/Damirados/AoC/blob/master/lib/Y2020/event13.ex)
+* [Day 14](https://github.com/Damirados/AoC/blob/master/lib/Y2020/event14.ex)
+* [Day 15](https://github.com/Damirados/AoC/blob/master/lib/Y2020/event15.ex)
