@@ -9,8 +9,6 @@ defmodule Y2020.Event15 do
     IO.puts("Puzzle part1: #{solve(@puzzle, 2020)}")
     IO.puts("Test part2: #{solve(@test, 30_000_000)}")
     IO.puts("Puzzle part2: #{solve(@puzzle, 30_000_000)}")
-    # IO.puts("Test part2: #{part2("input/Y2020/event14/test2.txt")}")
-    # IO.puts("Puzzle part2: #{part2("input/Y2020/event14/puzzle.txt")}")
   end
 
   def solve(numbers, x) do
