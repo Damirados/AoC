@@ -25,3 +25,4 @@ Solutions for [Advent of Code](https://adventofcode.com) puzzles in [Elixir](htt
 ## [2020](https://adventofcode.com/2021)
 
 * [Day 1](https://github.com/Damirados/AoC/blob/master/lib/Y2021/event1.ex)
+* [Day 1](https://github.com/Damirados/AoC/blob/master/lib/Y2022/event2.ex)
